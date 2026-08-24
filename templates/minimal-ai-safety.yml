@@ -1,0 +1,10 @@
+version: 1
+rules:
+  - id: protect-auth
+    type: protected_path
+    paths: ["src/auth/**", "src/middleware*", ".env*"]
+    severity: warning
+  - id: no-moment
+    type: forbidden_dependency
+    packages: [moment]
+    message: "Do not introduce moment; use the project's existing date utilities."

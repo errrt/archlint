@@ -1,0 +1,26 @@
+name: False positive
+description: Report a valid change that ArchLint incorrectly flags
+title: "[False positive]: "
+labels: ["FALSE_POSITIVE"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: ArchLint version
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Relevant configuration
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: diff
+    attributes:
+      label: Minimal reproducing diff
+      render: diff
+    validations:
+      required: true

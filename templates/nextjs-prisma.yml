@@ -1,0 +1,11 @@
+version: 1
+rules:
+  - id: no-component-prisma
+    type: import_boundary
+    from: ["src/components/**", "components/**"]
+    deny: ["src/db/**", "src/lib/prisma*", "prisma/**"]
+    message: "Components must not import Prisma directly."
+  - id: protect-prisma-schema
+    type: protected_path
+    paths: ["prisma/schema.prisma"]
+    severity: warning

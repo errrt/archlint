@@ -1,0 +1,15 @@
+version: 1
+rules:
+  - id: no-firebase
+    type: forbidden_dependency
+    packages: [firebase]
+    message: "Use Supabase instead of Firebase."
+  - id: no-client-db
+    type: import_boundary
+    from: ["src/components/**", "app/**"]
+    deny: ["src/db/**", "src/repositories/**"]
+    message: "Client/UI code must not access the database directly."
+  - id: protect-supabase-service-key
+    type: protected_path
+    paths: ["src/lib/supabase/server*", "src/lib/supabase/admin*"]
+    severity: warning

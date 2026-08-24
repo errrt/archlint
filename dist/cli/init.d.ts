@@ -1,0 +1,2 @@
+export declare const EXAMPLE_CONFIG = "version: 1\n\nrules:\n  - id: no-firebase\n    type: forbidden_dependency\n    packages:\n      - firebase\n    message: \"Use Supabase Auth only.\"\n\n  - id: db-boundary\n    type: import_boundary\n    from:\n      - \"src/components/**\"\n    deny:\n      - \"src/db/**\"\n    message: \"UI components must not access the database directly.\"\n\n  - id: protect-auth\n    type: protected_path\n    paths:\n      - \"src/auth/**\"\n    severity: warning\n";
+export declare function initCommand(cwd: string): Promise<void>;

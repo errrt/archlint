@@ -1,0 +1,1 @@
+{"path":"src/auth.ts","addedLines":[{"line":1,"content":"import { initializeApp } from 'firebase/app';"}]}

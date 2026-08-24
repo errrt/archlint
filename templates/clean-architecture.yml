@@ -1,0 +1,10 @@
+version: 1
+rules:
+  - id: ui-through-service
+    type: import_boundary
+    from: ["src/ui/**", "src/components/**"]
+    deny: ["src/repositories/**", "src/db/**"]
+  - id: service-through-repository
+    type: import_boundary
+    from: ["src/services/**"]
+    deny: ["src/db/**"]

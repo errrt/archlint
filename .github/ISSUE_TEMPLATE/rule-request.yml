@@ -1,0 +1,27 @@
+name: Rule request
+description: Suggest an architecture constraint ArchLint should detect
+title: "[Rule]: "
+labels: ["NEW_RULE"]
+body:
+  - type: textarea
+    id: decision
+    attributes:
+      label: Architecture decision
+      description: What project decision should be enforced?
+      placeholder: UI components must not import Prisma directly.
+    validations:
+      required: true
+  - type: textarea
+    id: diff
+    attributes:
+      label: Example violating diff
+      description: Provide a minimal code or Git diff example with secrets removed.
+      render: diff
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected ArchLint result
+    validations:
+      required: true
