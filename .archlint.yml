@@ -1,0 +1,23 @@
+version: 1
+
+rules:
+  - id: no-firebase
+    type: forbidden_dependency
+    packages:
+      - firebase
+    message: "ArchLint must remain provider-independent; do not introduce Firebase."
+
+  - id: cli-boundary
+    type: import_boundary
+    from:
+      - "src/cli/**"
+    deny:
+      - "src/semantic/**"
+    message: "The core CLI must not depend directly on a semantic provider."
+
+  - id: protect-config-schema
+    type: protected_path
+    paths:
+      - "src/config/schema.ts"
+    severity: warning
+
