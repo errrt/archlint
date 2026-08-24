@@ -2,16 +2,54 @@
 
 **ESLint for AI coding agents. Stop Claude, Codex, Cursor, and human contributors from breaking your architecture.**
 
+[![npm](https://img.shields.io/npm/v/archlint-ai)](https://www.npmjs.com/package/archlint-ai)
+[![CI](https://github.com/errrt/archlint/actions/workflows/ci.yml/badge.svg)](https://github.com/errrt/archlint/actions/workflows/ci.yml)
+
 ArchLint checks Git diffs against architecture rules committed with your project. It is agent-independent, deterministic by default, and designed for local use and CI.
 
+CLAUDE.md and AGENTS.md are instructions. ArchLint turns your most important architecture decisions into checks that can block a pull request.
+
+```text
+AI or developer changes code
+              ↓
+           Git diff
+              ↓
+           ArchLint
+              ↓
+       PASS or BLOCKED
+```
+
+![ArchLint blocking a forbidden Firebase dependency in GitHub Actions](docs/assets/archlint-github-action-demo.png)
+
 ## Quick start
+
+From the root of any Git repository:
 
 ```bash
 npx archlint-ai init
 npx archlint-ai check
 ```
 
-The first command creates `.archlint.yml`. The second checks staged, unstaged, and untracked changes. Errors exit with code `1`; warnings are reported without blocking.
+The first command creates `.archlint.yml`. The second checks staged, unstaged, and untracked changes. No global installation, account, API key, or dashboard is required.
+
+```text
+✓ 3 rules passed
+
+NO ARCHITECTURE DRIFT DETECTED
+```
+
+When a rule is broken:
+
+```text
+[no-firebase]
+
+src/auth/firebase.ts:1
+
+Use Supabase Auth only.
+
+Evidence: firebase
+Severity: ERROR
+```
 
 ## Rules
 
@@ -55,7 +93,7 @@ Copy [`examples/github-action.yml`](examples/github-action.yml) into `.github/wo
 
 ## Privacy and semantic rules
 
-All deterministic rules run 100% locally. Semantic rules are experimental: v0.1 defines a provider-neutral `SemanticEvaluator` interface but does not send code to an LLM or include a provider. A configured semantic rule therefore performs no remote work.
+All deterministic rules run 100% locally. No repository code is uploaded by them. Semantic rules are experimental: v0.1 defines a provider-neutral `SemanticEvaluator` interface but does not send code to an LLM or include a provider. A configured semantic rule therefore performs no remote work.
 
 ## Templates
 
@@ -85,6 +123,3 @@ Every pull request is then checked automatically. Fix the code when a rule is vi
 ## Contributing and rule requests
 
 ArchLint v0.1 is deliberately small. If an architecture constraint cannot be expressed with the current rules, [open an issue](https://github.com/errrt/archlint/issues) and describe the code pattern you want to prevent. Concrete rule requests guide the roadmap.
-
-[![npm](https://img.shields.io/npm/v/archlint-ai)](https://www.npmjs.com/package/archlint-ai)
-[![CI](https://github.com/errrt/archlint/actions/workflows/ci.yml/badge.svg)](https://github.com/errrt/archlint/actions/workflows/ci.yml)
