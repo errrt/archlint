@@ -19,7 +19,7 @@ AI or developer changes code
        PASS or BLOCKED
 ```
 
-![ArchLint blocking a forbidden Firebase dependency in GitHub Actions](docs/assets/archlint-github-action-demo.png)
+![ArchLint passing a safe change and blocking a forbidden Firebase dependency](docs/assets/archlint-demo.gif)
 
 ## Quick start
 
